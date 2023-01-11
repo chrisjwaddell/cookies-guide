@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies Expire</title>
+	<link rel="stylesheet" href="../style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Attributes - expires and max-age</h1>
+					<p>Cookies can be either session cookies or persistent cookies. By default, they are session cookies. A session cookie is deleted when the browser closes.</p>
+					<p>To create a cookie that expires, you have a choice of two ways on how to set the expiry: <i>max-age</i> and <i>expires</i>. On this page you'll create a cookie with a 5 second expiry and see that it disappears after 5 seconds.</p>
+
+					<section class="cookie">
+						<div class="center">
+							<label for="cookie">Cookies on this page</label><br>
+							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
+						</div>
+					</section>
+
+
+					<p><i>max-age</i> is duration of the cookie in number of seconds relative to current time. Here I've set it as 5.</p>
+					<p class="action">Click the "Create Cookie" button.</p>
+					<section class="add center">
+						<button id="btnCreateCookie" class="c-btn c-btn--primary btn--primary">Create Cookie</button>
+						<p>This uses <i>max-age</i> attribute to set an expiry for the cookie. <i>max-age</i> uses number of days:<br> <i class="cookiecolor">document.cookie = cookie_expires=lasts_5_seconds; max-age=5"</i></p>
+					</section>
+
+					<p>Cookie will delete after 5 seconds.</i></p>
+
+
+					<p>The second way is using the <i> expires</i> attribute which needs a date string in UTC date format. You can use the Date object with .toUTCString() to convert to this format.</p>
+					<p class="action">Click the "Create Cookie" button.</p>
+					<section class="add center">
+						<button id="btnCreateCookie" class="c-btn c-btn--primary btn--primary">Create Cookie</button>
+						<p>This uses <i>expires</i> attribute to set an expiry for the cookie. <i>expires</i> needs the date format in UTC:<br> <i class="cookiecolor">document.cookie = cookie_2_expires=lasts_10_seconds; expires=" + new Date(Date.now() + COOKIE_DURATION * 2 * 1000).toUTCString()</i></p>
+					</section>
+
+					<p>Cookie will delete after 10 seconds.</i></p>
+
+					<p>When you add a cookie with attributes, the attributes are seperated with a semicolon <i>;</i> eg <br><i class="cookiecolor">document.cookie = cookie_expires=lasts_5_seconds; max-age=5</i></p>
+					<p>But when you view the cookie with <i>document.cookies</i>, you won't see the attributes, you'll just see:<br><i class="cookiecolor">cookie_expires=lasts_5_seconds</i></p>
+					<p>So this means that when reading cookies, each cookie is seperated by a semicolon <i>; </i>.</p>
+
+					<p class="note">Note: What you see in the browser console (in the "Application" tab in Chrome and "Storage" tab for Firefox) doesn't always match what <i>console.cookie</i> says.</i> The browser doesn't delete session cookies until you and reopen it the browser. Also, expired cookies sometimes still appear in the console Application/Storage tab but they won't get added to a requests <i>cookie</i> header and when you type <i>console.cookie</i>, it doesn't appear there.</p>
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<script src="../scripts/app.js"></script>
+<script>
+	const COOKIE_DURATION = 5
+
+	elCreateCookie[0].addEventListener("click", (e) => {
+		let expiryCookie = "cookie_1_expires=lasts_" + COOKIE_DURATION + "_seconds; max-age=" + COOKIE_DURATION
+		console.log("COOKIE STRING TO ADD - " + expiryCookie)
+		document.cookie = expiryCookie
+		console.log(document.cookie)
+		showCookieValue()
+
+		countSeconds(COOKIE_DURATION)
+	})
+
+	elCreateCookie[1].addEventListener("click", (e) => {
+		// let expiryCookie = "cookie_expires=lasts_" + (COOKIE_DURATION * 2) + "_seconds; expires=" + new Date(Date.now() + COOKIE_DURATION * 2 * 1000)
+		let expiryCookie = "cookie_2_expires=lasts_" + (COOKIE_DURATION * 2) + "_seconds; expires=" + new Date(Date.now() + COOKIE_DURATION * 2 * 1000).toUTCString()
+		console.log("COOKIE STRING TO ADD - " + expiryCookie)
+		document.cookie = expiryCookie
+		console.log(document.cookie)
+		showCookieValue()
+
+		countSeconds(COOKIE_DURATION * 2)
+	})
+
+	document.addEventListener("visibilitychange", function() {
+		if (document.visibilityState === 'visible') {
+			showCookieValue()
+		}
+	});
+
+
+	let seconds = 0
+
+	function countSeconds(dur) {
+		seconds += 1
+		if (seconds < dur + 2) {
+			setTimeout(() => countSeconds(dur), 1000)
+		} else {
+			showCookieValue();
+			seconds = 0;
+			alert("Cookie expired now. See it disappear from the cookie list.")
+		}
+	}
+</script>
+
+</html>

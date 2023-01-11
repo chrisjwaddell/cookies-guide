@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies 1</title>
+	<link rel="stylesheet" href="../style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Reading Cookies in the browser</h1>
+					<p>Reading a cookie on the browser can be done by typing <i>document.cookie</i> in the browser console. This page currently has a <i>document.cookie</i> value of:<br><span class="cookiecolor cookievaluesp"></span></p>
+					<p>When you read cookies, you can only read all of the cookies made available to Javascript via <i>document.cookie</i> (more about that later). But you write cookies individually.</p>
+					<p>Cookies are a key-value pair. You can split by <i>document.cookie.split(";").trim()</i>. Cookie attributes are included when you write a cookie but they aren't in the cookie string when you read them.</p>
+					<p>For any cookies that can be read through Javascript, you can't find out the attributes through Javascript code.</p>
+					<p>It's good practice to use decodeURIComponent to read cookies. And a good idea to use a cookie library.</p>
+
+					<section class="cookie">
+						<div class="center">
+							<label for="cookie">Cookies on this page</label><br>
+							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
+						</div>
+					</section>
+
+					<p>Here are some functions to read a cookie string.</p>
+
+					<pre> <code>
+// Turn an individual cookie to a key/value object
+function cookieKeyValue(c) {
+    let cookie = ""
+
+    try {
+        cookie = decodeURIComponent(c);
+    } catch (e) {
+        console.error(e);
+    }
+
+    let n = cookie.indexOf("=")
+
+    return {
+        key: cookie.slice(0, n),
+        value: cookie.slice(n + 1, cookie.length)
+    }
+}
+
+// cs is cookie string, document.cookie
+// See if ckey is in cs
+function cookieIn(cs, ckey) {
+    return cs.split(';').filter((item) => item.trim().includes(ckey + '=') ).length === 1
+}
+
+
+
+// Given a cookie string, turn it into an array of key/value objects
+function cookiesObject(cs) {
+    return cs.split(';').map((item) => cookieKeyValue(item) )
+}
+
+                        </code></pre>
+
+					<p>Using the function <i>cookiesObject</i> listed above, we can get an array of { key, value } objects refering to the cookie keys and values. Here we would get the following result:<br><span class="cookiecolor objectresult"></span></p>
+					<p>Cookie values can have "=" so don't do <i>.split("=")</i>, but you can do <i>.includes(name + "=")</i> because <i>.includes()</i> finds only the first "=".</p>
+
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="../scripts/app.js"></script>
+<script>
+	// elCreateCookie[0].addEventListener('click', (e) => {
+	// 	document.cookie = 'cookie_1=from_page_1'
+	// 	document.cookie = 'common_cookie=updated_page-1'
+	// 	showCookieValue()
+	// })
+
+	const elCookievaluesp = document.querySelector(".cookievaluesp")
+	const elObjResult = document.querySelector(".objectresult")
+
+
+	function cookieKeyValue(c) {
+		let cookie = ""
+
+		try {
+			cookie = decodeURIComponent(c);
+		} catch (e) {
+			console.error(e);
+		}
+
+		let n = cookie.indexOf("=")
+
+		return {
+			key: cookie.slice(0, n),
+			value: cookie.slice(n + 1, cookie.length)
+		}
+	}
+
+	// cs is cookie string, document.cookie
+	// See if ckey is in cs
+	function cookieIn(cs, ckey) {
+		return cs.split(';').filter((item) => item.trim().includes(ckey + '=')).length === 1
+	}
+
+
+
+	// Given a cookie string, turn it into an array of key/value objects
+	// function cookiesObject(cs) {
+	// 	return cs.split(';').map((item) => cookieKeyValue(item))
+	// }
+
+	function cookiesObject(cs) {
+		return cs.split(';').map((item) => Array.prototype.toString(cookieKeyValue(item)))
+	}
+
+	function cookiesObjectForThisGuide(cs) {
+		return cs.split(';').map((item) => JSON.stringify(cookieKeyValue(item))).toString()
+	}
+
+	document.addEventListener("DOMContentLoaded", () => {
+		const cookies = document.cookie
+
+		elCookievaluesp.textContent = cookies
+
+		// elObjResult.textContent = cookiesObject(cookies)
+		elObjResult.textContent = cookiesObjectForThisGuide(cookies)
+	})
+</script>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies 1</title>
+	<link rel="stylesheet" href="../style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Uses and Advantages Cookies have</h1>
+					<p>On this page, we create a basic cookie with no attributes. By default, cookies are session cookies.</p>
+					<p>Cookies need a key/value pair eg <i class="cookiecolor">document.cookies = "name=Mark"</i>. You can create a cookie in the browser or in the server.</p>
+					<p>Create a basic cookie by clicking the <i>Create Cookie</i> button below.</p>
+					<p>When you close the page and reopen it, the cookies are deleted by the browser.</p>
+					<p class="note">Note: You may need to close the browser and reopen it for it to delete the cookie because browsers often have session recovery built in. Not just the page tab but the whole browser.</p>
+
+					<section class="cookie">
+						<div class="center">
+							<label for="cookie">Cookies on this page</label><br>
+							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
+						</div>
+					</section>
+
+					<p class="action">Click the "Create Cookie" button.</p>
+					<section class="add center">
+						<button id="btnCreateCookie" class="c-btn c-btn--primary btn--primary">Create Cookie</button>
+						<p>This button adds the cookies:<br><i class="cookiecolor">document.cookie = common_cookie=from_page-1; cookie_1=from_page_1</i></p>
+					</section>
+
+					<p>Open the next page, cookie-02.html by clicking the link below.</p>
+					<div class="center">
+						<a class="link" href="./02-basic-cookie-2.html" target="_blank">Basic-Cookie-2.html</a>
+					</div>
+
+					<p>You can see that both pages can see <i>common_cookie</i>, it's value changes depending on which page you clicked <i>Create Cookie</i> on last.</p>
+					<p><i>cookie_1</i> with value - <i>from_page_1</i> and <i>cookie_2</i> with value - <i>from_page_2</i> can be seen on both pages.</p>
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="../scripts/app.js"></script>
+<script>
+	// elCreateCookie[0].addEventListener('click', (e) => {
+	// 	document.cookie = 'cookie_1=from_page_1'
+	// 	document.cookie = 'common_cookie=updated_page-1'
+	// 	showCookieValue()
+	// })
+
+
+	document.addEventListener("DOMContentLoaded", () => {
+		const cookies = document.cookie
+
+		console.log(cookies.split(";"))
+		console.log(cookies.split(";").includes("cookie_2"))
+	})
+</script>
+
+</html>

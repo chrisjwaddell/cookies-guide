@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies 2</title>
+	<link rel="stylesheet" href="../style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+
+					<h1>Basic cookie 2</h1>
+					<p>This page is to be viewed with the first page <i>Basic cookie</i> to show basic session cookies with no attributes. Basic cookies can be seen on multiple pages in the same <i>path</i>. The default <i>path</i> setting is for cookies to be able to be seen from pages in the same directory path.</i></p>
+					<p>You can clear the cookies on the previous page and this page and see how it works. The <i>path</i> sets to <i>client</i> which is the path of this page so any basic cookies created from pages in the <i>client</i> directory will share the same cookies.</p>
+
+					<section class="cookie">
+						<div class="center">
+							<label for="cookie">Cookies on this page</label><br>
+							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
+						</div>
+					</section>
+
+					<p class="action">Click the "Create Cookie" button.</p>
+					<section class="add center">
+						<button id="btnCreateCookie" class="c-btn c-btn--primary btn--primary">Create Cookie</button>
+						<p>This button adds the cookies:<br><i class="cookiecolor">document.cookie = common_cookie=from_page-2; cookie_2=from_page_2</i></p>
+					</section>
+
+					<p>Notice that adding a cookie adds it to the cookie bucket. If I was to add a cookie like this: <i class="cookcolor">document.cookie = another_cookie=another"</i>, it would add this cookie string on to the end of the cookies. It doesn't mean I have re-assigned <i>document.cookies</i></p>
+
+					<p>The next section sets a cookie with an expiry time.</p>
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="../scripts/app.js"></script>
+<script>
+	elCreateCookie[0].addEventListener("click", (e) => {
+		document.cookie = "cookie_2=from_page_2"
+		document.cookie = "common_cookie=updated_page-2"
+		showCookieValue()
+	})
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<label for="cookie">Cookies on this page</label><br>
+		<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
+
+		<button id="btnCreateCookie">Create Cookie</button>
+
+	</div>
+
+</body>
+<script src="../scripts/app.js"></script>
+<script>
+	elCreateCookie.addEventListener("click", (e) => {
+		document.cookie = "name=cookie-1"
+		showCookieValue()
+	})
+</script>
+
+</html>

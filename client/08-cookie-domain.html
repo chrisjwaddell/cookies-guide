@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies Expire</title>
+	<link rel="stylesheet" href="../style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Attributes - domain</h1>
+					<p>If the domain is <i>domain.com</i>, the cookie will appear when requesting <i>domain.com</i> and <i>www.domain.com</i>. But if the domain is <i>www.domain.com</i>, the cookie won't appear for <i>domain.com</i>.</p>
+
+					<p>If a subdomain is given as a domain attribute for a cookie, eg <i>api.domain.com</i>, then the request must start with that subdomain and match on the domain too. So a request for <i>www.domain.com</i> won't match.</p>
+
+					<p><i class="cookiecolor">document.cookie = "other_domain=google.com;domain=google.com;"</i><br>This won't appear on this website because this website's domain isn't google.com.</p>
+
+					<p>The following cookie will show for any part of domain.com because the domain is <i>.domain.com</i>:<br><i class="cookiecolor">"all-domain=all; domain=.domain.com;"</i></p>
+					<p>The following cookie will show for only www.domain.com:<br><i class="cookiecolor">"just-wwww=www; domain=www.domain.com;"</i></p>
+					<p>The following cookie will show for domain.com:<br><i class="cookiecolor">"just-domain=domain; domain=domain.com;"</i></p>
+
+
+					<p>A cookie domain is set to herokuapp.com but rejected on serene-bastion-01422.herokuapp.com because it comes from a domain included in the Public Suffix List.</p>
+
+					<p>The Public Suffix List is a list maintained by Mozilla, used by all browsers to restrict who can set cookies on behalf of other domains.</p>
+
+					<p>See more at:<br><a href="https://publicsuffix.org/" target="_blank">https://publicsuffix.org/</a><br><a href=" https://devcenter.heroku.com/articles/cookies-and-herokuapp-com" target="_blank">https://devcenter.heroku.com/articles/cookies-and-herokuapp-com</a></p>
+
+					<p>The browser has the following rules when it recieves a response:<br>&#x2022 Reject the cookie altogether if either the domain or the subdomain in Domain don't match the sender host<br>&#x2022 Reject the cookie if the value of Domain is included in the Public suffix list<br>&#x2022 Accept the cookie if the domain or the subdomain in Domain matches the sender host
+					</p>
+
+
+
+
+					<input type="text" class="cookievalue hidden"></input>
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<script src="../scripts/app.js"></script>
+<script>
+	document.addEventListener("visibilitychange", function() {
+		if (document.visibilityState === 'visible') {
+			showCookieValue()
+		}
+	});
+
+
+	let seconds = 0
+
+	function countSeconds(dur) {
+		seconds += 1
+		if (seconds < dur + 2) {
+			setTimeout(() => countSeconds(dur), 1000)
+		} else {
+			showCookieValue();
+			seconds = 0;
+			alert("Cookie expired now. See it disappear from the cookie list.")
+		}
+	}
+</script>
+
+</html>

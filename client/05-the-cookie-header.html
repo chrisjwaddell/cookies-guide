@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies 1</title>
+	<link rel="stylesheet" href="../style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Every network request</h1>
+
+					<section class="cookie">
+						<div class="center">
+							<label for="cookie">Cookies on this page</label><br>
+							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
+						</div>
+					</section>
+
+					<p>A very unique thing about cookies is that they are sent automatically. You don't have to do anything to send them, they just get added automatically with every network request. This is an advantage in some situations.</p>
+
+					<p>HTTP is stateless. Cookies make a request stateful. That's why they were integrated into HTTP.</p>
+
+					<p>Cookies are just headers with data in it. The <i>cookies</i> header is just like other headers like <i>Authentication</i> or <i>Content-Length</i>. You can send cookies in the <i>Authentication</i> header, you just need to do it manually. But cookies are sent automatically when sending cookies in the <i>cookies</i> header. When a request is made, whether it's a GET request for a webpage or a fetch request, the browser automatically adds the <i>document.cookies</i> string to the <i>cookies</i> header for every request.</p>
+
+					<p>Some cookie attributes such as <i>domain</i>, <i>path</i> and other cookie security attributes show or hide cookies for certain pages.</p>
+					<p>Fetch has extra security headers added to the request so to send a cookie via fetch, you need the <i>'credentials'</i> property set to <i>'include'</i>. You also need to allow some header settings on the server.</p>
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="../scripts/app.js"></script>
+<script>
+</script>
+
+</html>
