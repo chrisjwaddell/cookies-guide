@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies httpOnly</title>
+	<link rel="stylesheet" href="./style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Attributes - httpOnly</h1>
+					<p>httpOnly disables javascript from accessing the cookie. <i>document.cookie</i> won't show the cookie. This helps prevent XSS attacks. You can see the cookie in the console but it can't be read by javascript so no vicious script can read it.</p>
+					<p>You can't add a httpOnly cookie from the browser. It can come from a server. So running this code in the browser won't work:<br><i class="cookiecolor">document.cookie = "httpOnly_cookie=httpOnly; httpOnly"</i></p>
+
+					<p>Sending it back from a server in the <i>Set-Cookie</i> header is how you can add an <i>httpOnly</i> cookie to the browser.</p>
+
+					<p>res.setHeader("set-cookie", "httpOnly_cookie=httpOnly; httpOnly")</p>
+
+
+					<section class="cookie">
+						<div class="center">
+							<label for="cookie">Cookies on this page</label><br>
+							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
+						</div>
+					</section>
+
+
+					<p class="action">Click the "Send Request" button to create a basic cookie and send it to an Express server</p>
+					<section class="add center">
+						<p>This button sends back a cookie: <br><i class="cookiecolor">httponly_cookie=httponly; httpOnly;</i></p>
+						<button class="btnFetch c-btn c-btn--secondary btn--secondary">Send Request</button>
+					</section>
+
+					<p>The endpoint here has the following code (using Express):</p>
+					<pre><code>
+router.get('/httponly', (req, res) => {
+    res.set('Access-Control-Allow-Origin', req.headers.origin);
+    res.set('Access-Control-Allow-Credentials', 'true');
+    res.set('Set-Cookie', 'httponly_cookie=httponly; httpOnly;')
+
+    res.send({
+        message: 'httponly Cookie sent back to the browser.',
+    })
+})
+                    </code></pre>
+
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<script src="./scripts/app.js"></script>
+<script>
+	const elFetch = document.querySelectorAll('.btnFetch');
+
+	elFetch[0].addEventListener('click', (e) => {
+		console.log("elFetch[0]")
+
+		let req = new Request("http://localhost:25051/httponly", {
+			credentials: 'include',
+		});
+		const response = fetch(req).then(resp => resp.json())
+			.then(json => {
+				alert("Message back from the Express server was - " + json.message);
+				showCookieValue()
+
+			})
+			.catch(err => {
+				console.error(err);
+				alert("Start the server by typing 'npm run server' in the console.")
+			})
+	})
+
+
+	document.addEventListener("visibilitychange", function() {
+		if (document.visibilityState === 'visible') {
+			showCookieValue()
+		}
+	});
+
+
+	let seconds = 0
+
+	function countSeconds(dur) {
+		seconds += 1
+		if (seconds < dur + 2) {
+			setTimeout(() => countSeconds(dur), 1000)
+		} else {
+			showCookieValue();
+			seconds = 0;
+			alert("Cookie expired now. See it disappear from the cookie list.")
+		}
+	}
+</script>
+
+</html>

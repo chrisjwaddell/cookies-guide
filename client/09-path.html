@@ -26,7 +26,7 @@
 				<div class="content">
 					<h1>Attributes - path</h1>
 
-					<p>If the browser receives a response that contains a Set-Cookie header on path http://example.com/test, then the cookie will apply to:<br>
+					<p>The <i>path</i> attribute defines the path the cookie should be sent to. If the browser receives a response that contains a Set-Cookie header on path http://example.com/test, then the cookie will apply to:<br>
 						- http://example.com/test<br>
 						- http://example.com/test/xyz<br>
 						- http://example.com/test/any-path-with-test<br>
@@ -41,7 +41,7 @@
 					</section>
 
 
-					<p>In this Cookies Guide, up to here we have a number of cookies that had no <i>path</i> attribute set, so they get the default which is the current directory which is <i>/client</i>. So any webpage in a subdirectory of <i>/client</i> should have these same cookies visible. Lets test that. Click on the two links below which are in <i>/client/subdir1</i> and <i>/client/subdir2</i> respectively.</p>
+					<p>In this Cookies Guide, up to here we have a number of cookies that had no <i>path</i> attribute set, so they get the default which is the directory path of the source that created the cookie which is <i>/client</i>. So any webpage in a subdirectory of <i>/client</i> should have these same cookies visible. Lets test that. Click on the two links below which are in <i>/client/subdir1</i> and <i>/client/subdir2</i> respectively.</p>
 					<p>Notice how the cookie <i class="cookiecolor">path_is_root=sending_to_server</i> is on this webpage. That's because it's <i>path</i> is <i>/</i> which has <i>/client</i> as a subdirectory so it is included in this webpage.</p>
 
 					<p class="action">Click on the following two links</p>
@@ -55,85 +55,70 @@
 
 					<p>Notice how the cookies on this webpage also appear in the webpages on the links above. It's because these webpages are in the <i>/client</i> path, the path the cookies are set on. Also notices that the cookies that were created:<br><i class="cookiecolor">only_for=subdir1;path=/client/subdir1;</i> and <i class="cookiecolor">only_for=subdir2;path=/client/subdir2;</i> don't appear on this webpage.</p>
 
-					<p>If I was to add a cookie on a path unrelated to this webpage eg <br><i class="cookiecolor">document.cookie = "cookie_in=different_path;path=/server"</i><br></p>
-					<p>This cookie appears in the console cookie list but it won't appear on this webpage or any sub-directory webpages.</p>
+					<p>If we add a cookie on a path unrelated to this webpage eg <br><i class="cookiecolor">document.cookie = "cookie_in=different_path;path=/server"</i><br>This cookie appears in the console cookie list but it won't appear on this webpage or any sub-directory webpages.</p>
+					<p>You need to start a path with <i>/</i></p>
 
+					<h2>Sending cookies to a Server</h2>
 
-
-
-
-
-
-					<p>On this page, we create a basic cookie with a <i>path</i> attribute and send it to an Express server via a fetch request. By default, cookies are session cookies.</p>
-					<p>Session cookies are removed when the browser is closed.</p>
-					<p class="note">Note - A cookie session is not to be confused with sessions in Session authentication, which uses session ID's. Session ID's end when a user logs out.</p>
-
-					<p>Cookies need a key/value pair eg <i class="cookiecolor">document.cookies = "name=Mark"</i>. You can create a cookie in the browser or in the server. Usually cookies are created on the server. But for these demonstrations, we'll create them in the browser.</p>
-
-					<section class="cookie">
-						<div class="center">
-							<label for="cookie">Cookies on this page</label><br>
-							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
-						</div>
-					</section>
-
-					<p>If you look in the Network tab in the console, and look at the request for this webpage, you will notice that the <i>cookies</i> header for request for this page will contain all the cookies on this page. The browser adds the cookies for this page to the request before it requests this page. When no <i>path</i> attribute is added, it takes the default which is <i>client</i>. Next we make a fetch request to an Express server to show how the cookies are added to a fetch request.</p>
-
+					<p>In this section, we'll send cookies to some different endpoints on a server to show how it works.</p>
 
 					<p class="action">Start the Express server by starting a shell and typing in <i>npm run server</i></p>
 					<pre> <code>> npm run server</code></pre>
 
+					<p>As we saw in <a href="./06-send-cookie-to-server.html">Sending cookies to a server</a>, if the cookie <i>path</i> doesn't match the servers destination path, the browser won't add the cookie to the <i>cookie</i> header in the request.</p>
+
+					<p>Lets recap. </p>
 
 					<p class="action">Click the "Send Request" button to create a basic cookie and send it to an Express server</p>
 					<!-- <p class="action">Click the "Send Request" button.</p> -->
 					<section class="add center">
-						<p>This button makes a cookie: <br><i class="cookiecolor">send_me=sending_to_server;path=/;</i><br>and sends a fetch request to the Express server, to: <br><i class="cookiecolor">localhost:25051/sendcookie</i></p>
-						<button class="btnFetch1 c-btn c-btn--secondary btn--secondary">Send Request</button>
+						<p>This button makes a cookie: <br><i class="cookiecolor">path_is_root=sending_to_server;path=/;</i><br>and sends a fetch request to the Express server, to: <br><i class="cookiecolor">http://localhost:25051/sendcookie</i></p>
+						<button class="btnFetch c-btn c-btn--secondary btn--secondary">Send Request</button>
 					</section>
 
-					<p>Notice how when we added this cookie we added <i>path=/;</i> The reason path was included is because the previous cookies had no path attribute put in so they will take the path of the current webpage, that being <i>client</i>. When we make a fetch request, we are making it to <i>localhost:25051/sendcookie</i>.</p>
+
+					<p>This cookie created - <i class="cookiecolor">send_me=sending_to_server;path=/;</i> gets sent to the Express server. Look at the <i>cookie</i> header of the last request in the Network tab. No other cookies got sent because they have the <i>path</i> set as <i>/client</i>. The destination is <i>http://localhost:25051/sendcookie</i> which fits in with the <i>/</i> path but not the <i>/client</i> path.</p>
+
+					<p>To illustrate this point further, we'll send to <i>http://localhost:25051/client/sendcookie</i>. The <i>/client</i> cookies should send.</p>
+
+					<p class="action">Click the "Send Request" button to create a basic cookie and send it to an Express server</p>
+
+					<section class="add center">
+						<p>This button sends a fetch request to the Express server, to: <br><i class="cookiecolor">http://localhost:25051/client/sendcookie</i></p>
+						<button class="btnFetch c-btn c-btn--secondary btn--secondary">Send Request</button>
+					</section>
+
+					<p>And there we have it! All the cookies with <i>/client</i> as the path got sent in the request.</p>
 
 
 
-					<pre> <code>
-const elFetch1 = document.querySelectorAll('.btnFetch1');
+					<h2>Receiving cookies from a Server</h2>
 
-elFetch1[0].addEventListener('click', (e) => {
-	document.cookie = 'send_me=sending_to_server;path=/;max-age=180;'
-	showCookieValue()
-
-	const response = fetch("http://localhost:25051/sendcookie", {
-        mode: "cors",
-	    credentials: "include"
-	}).then(resp => resp.json())
-	.then(json => alert("Message back from the Express server was - " + json.message))
-	.catch(err => {
-	    console.error(err);
-	    alert("Start the server by typing 'npm run server' in the console.")
-	})
-})
-</code></pre>
+					<p>Servers can send a cookie in a response with the <i>Set-Cookies</i> header.</p>
+					<p>We'll hit an endpoint which sends back four cookies with the following paths and lets see how it handles it:<br>&#x2022 <i>/</i><br>&#x2022 <i>/client</i><br>&#x2022 <i>/client/subdir1</i><br>&#x2022 <i>/client/subdir2</i></p>
 
 
-					<p>Here is the Express code for endpoint <i>sendcookie</i></p>
+					<p class="action">Click the "Send Request" button to run this test</p>
 
-					<pre> <code>
-router.get('/sendcookie', (req, res) => {
-    console.log(req.headers.cookie)
+					<section class="add center">
+						<p>This button sends a fetch request to the Express server to: <br><i class="cookiecolor">localhost:25051/receivecookies</i></p>
+						<button class="btnFetch c-btn c-btn--secondary btn--secondary">Send Request</button>
+					</section>
 
-    res.set('Access-Control-Allow-Origin', req.headers.origin);
-    res.set('Access-Control-Allow-Credentials', 'true');
-    res.set('Access-Control-Expose-Headers', 'date, etag, access-control-allow-origin, access-control-allow-credentials');
-
-    res.send({
-        message: `Cookie received on the server. Cook value was ${req.headers.cookie}`,
-    })
-})
-</code></pre>
+					<p>After clicking this button and getting back four cookies, the cookie list has been updated. Two apply to this webpage: <i>from_server_root=root</i> and <i>from_server_client=client</i>. The two others apply to subdirectories.</p>
+					<p>Notice how <i>Set-Cookie</i> which comes from the server gets automatically added to the browsers document.cookie.</p>
 
 
-					<p>You can see that both pages can see <i>common_cookie</i>, it's value changes depending on which page you clicked <i>Create Cookie</i> on last.</p>
-					<p><i>cookie_1</i> with value - <i>from_page_1</i> and <i>cookie_2</i> with value - <i>from_page_2</i> can be seen on both pages.</p>
+					<p>Cookies are - <span class="cookievaluesp cookiecolor"></span></p>
+
+					<p class="action">Now, lets go back to the webpages in the subdirectories and see if any cookies from the server were added</p>
+
+					<a href="./subdir1/view-cookies.html" class="link" target="_blank">Click on this subdir1 page to view cookies it can see</a>
+
+					<br><br>
+
+
+					<a href="./subdir2/view-cookies.html" class="link" target="_blank">Click on this subdir2 page to view cookies it can see</a>
 
 
 
@@ -150,32 +135,28 @@ router.get('/sendcookie', (req, res) => {
 </body>
 <script src="./scripts/app.js"></script>
 <script>
-	const elFetch1 = document.querySelectorAll('.btnFetch1');
-	elFetch1[0].addEventListener('click', (e) => {
-		// document.cookie = 'send_me=sending_to_server;domain=127.0.0.1;path=/client;max-age=50000;'
-		document.cookie = 'send_me=sending_to_server;path=/;'
+	const elFetch = document.querySelectorAll('.btnFetch');
+	const elCookievaluesp = document.querySelector(".cookievaluesp")
+
+	function cookieLabelUpdate() {
+		const cookies = document.cookie
+		elCookievaluesp.textContent = cookies
+	}
+
+
+	document.addEventListener('DOMContentLoaded', () => {
+		cookieLabelUpdate()
+	})
+
+
+	elFetch[0].addEventListener('click', (e) => {
+		console.log("elFetch[0]")
+		document.cookie = 'path_is_root=sending_to_server;path=/;'
 		showCookieValue()
+		cookieLabelUpdate()
 
-		// const response = fetch("http://localhost:25051/sendcookie", {
-		// 		method: "GET",
-		// 		mode: "cors",
-		// 		credentials: "same-origin",
-		// 		headers: {
-		// 			"Accept": 'application/json',
-		// 			"Content-Type": 'application/json'
-		// 		}
-		// 	}).then(resp => resp.json())
-		// 	.then(json => alert("Message back from the Express server was - " + json.message))
-		// 	.catch(err => {
-		// 		console.error(err);
-		// 		alert("Start the server by typing 'npm run server' in the console.")
-		// 	})
-
-
-
-		let req = new Request("http://localhost:8055/client/06-send-cookie-to-server.html", {
-			// mode: 'cors', //just a safe-guard indicating our intentions of what to allow
-			credentials: 'include', //when will the cookies and authorization header be sent
+		let req = new Request("http://localhost:25051/sendcookie", {
+			credentials: 'include',
 		});
 		const response = fetch(req).then(resp => resp.json())
 			.then(json => alert("Message back from the Express server was - " + json.message))
@@ -183,13 +164,75 @@ router.get('/sendcookie', (req, res) => {
 				console.error(err);
 				alert("Start the server by typing 'npm run server' in the console.")
 			})
+	})
 
+	elFetch[1].addEventListener('click', (e) => {
+		console.log("elFetch[1]")
+
+		let req = new Request("http://localhost:25051/client/sendcookie", {
+			credentials: 'include',
+		});
+		const response = fetch(req).then(resp => resp.json())
+			.then(json => alert("Message back from the Express server was - " + json.message))
+			.catch(err => {
+				console.error(err);
+				alert("Start the server by typing 'npm run server' in the console.")
+			})
 	})
 
 
-	// document.addEventListener("DOMContentLoaded", () => {
-	// 	const cookies = document.cookie
-	// })
+	// We can't send 4 cookies in one 'Set-Cookies' header back from the server so I'm doing
+	// 4 seperate fetch requests
+	elFetch[2].addEventListener('click', (e) => {
+		// console.log("elFetch[2]")
+
+		let req = new Request("http://localhost:25051/receivecookies1", {
+			credentials: 'include',
+		});
+		let response = fetch(req).then(resp => resp.json())
+			.then(json => console.log("Response back from the Express server. Four new cookies were sent back."))
+			.catch(err => {
+				console.error(err);
+				alert("Start the server by typing 'npm run server' in the console.")
+			})
+
+		req = new Request("http://localhost:25051/receivecookies2", {
+			credentials: 'include',
+		});
+		response = fetch(req).then(resp => resp.json())
+			.then(json => console.log("Response back from the Express server. Four new cookies were sent back."))
+			.catch(err => {
+				console.error(err);
+				alert("Start the server by typing 'npm run server' in the console.")
+			})
+
+		req = new Request("http://localhost:25051/receivecookies3", {
+			credentials: 'include',
+		});
+		response = fetch(req).then(resp => resp.json())
+			.then(json => console.log("Response back from the Express server. Four new cookies were sent back."))
+			.catch(err => {
+				console.error(err);
+				alert("Start the server by typing 'npm run server' in the console.")
+			})
+
+		req = new Request("http://localhost:25051/receivecookies4", {
+			credentials: 'include',
+		});
+		response = fetch(req).then(resp => resp.json())
+			.then(json => {
+				console.log("Response back from the Express server. Four new cookies were sent back.");
+				showCookieValue()
+				cookieLabelUpdate()
+			})
+			.catch(err => {
+				console.error(err);
+				alert("Start the server by typing 'npm run server' in the console.")
+			})
+
+
+
+	})
 </script>
 
 </html>

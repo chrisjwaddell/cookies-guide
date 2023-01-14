@@ -25,13 +25,13 @@
 			<div class="wrapper">
 				<div class="content">
 					<h1>Attributes - domain</h1>
-					<p>If the domain is <i>domain.com</i>, the cookie will appear when requesting <i>domain.com</i> and <i>www.domain.com</i>. But if the domain is <i>www.domain.com</i>, the cookie won't appear for <i>domain.com</i>.</p>
+					<p>The <i>domain</i> attribute defines what domain the cookie should be sent to. If the domain is <i>domain.com</i>, the cookie will appear when requesting <i>domain.com</i> and <i>www.domain.com</i>. But if the domain is <i>www.domain.com</i>, the cookie won't appear for <i>domain.com</i>.</p>
 
 					<p>If a subdomain is given as a domain attribute for a cookie, eg <i>api.domain.com</i>, then the request must start with that subdomain and match on the domain too. So a request for <i>www.domain.com</i> won't match.</p>
 
-					<p><i class="cookiecolor">document.cookie = "other_domain=google.com;domain=google.com;"</i><br>This won't appear on this website because this website's domain isn't google.com.</p>
+					<p><i class="cookiecolor">document.cookie = "all_domain=google.com;domain=google.com;"</i><br>This cookie appears on all this website sub-domains.</p>
 
-					<p>The following cookie will show for any part of domain.com because the domain is <i>.domain.com</i>:<br><i class="cookiecolor">"all-domain=all; domain=.domain.com;"</i></p>
+					<p>The following cookie is the same thing, it appears on all sub-domains <i>.domain.com</i>:<br><i class="cookiecolor">"all-domain=all; domain=.domain.com;"</i></p>
 					<p>The following cookie will show for only www.domain.com:<br><i class="cookiecolor">"just-wwww=www; domain=www.domain.com;"</i></p>
 					<p>The following cookie will show for domain.com:<br><i class="cookiecolor">"just-domain=domain; domain=domain.com;"</i></p>
 

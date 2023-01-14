@@ -37,7 +37,7 @@
 
 					<p>HTTP is stateless. Cookies make a request stateful. That's why they were integrated into HTTP.</p>
 
-					<p>Cookies are just headers with data in it. The <i>cookies</i> header is just like other headers like <i>Authentication</i> or <i>Content-Length</i>. You can send cookies in the <i>Authentication</i> header, you just need to do it manually. But cookies are sent automatically when sending cookies in the <i>cookies</i> header. When a request is made, whether it's a GET request for a webpage or a fetch request, the browser automatically adds the <i>document.cookies</i> string to the <i>cookies</i> header for every request.</p>
+					<p>Cookies are sent via the <i>cookies</i> header. The <i>cookies</i> header is just like other headers like <i>Authentication</i> or <i>Content-Length</i>. You can send cookies in the <i>Authentication</i> header, you just need to do it manually. But cookies are sent automatically when sending cookies in the <i>cookies</i> header. When a request is made, whether it's a GET request for a webpage or a fetch request, the browser automatically adds the <i>document.cookies</i> string to the <i>cookies</i> header for every request.</p>
 
 					<p>Some cookie attributes such as <i>domain</i>, <i>path</i> and other cookie security attributes show or hide cookies for certain pages.</p>
 					<p>Fetch has extra security headers added to the request so to send a cookie via fetch, you need the <i>'credentials'</i> property set to <i>'include'</i>. You also need to allow some header settings on the server.</p>

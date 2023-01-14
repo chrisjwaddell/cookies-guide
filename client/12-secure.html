@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies httpOnly</title>
+	<link rel="stylesheet" href="./style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Attributes - secure</h1>
+					<p>With this setting, the cookie only sends for secure HTTPS websites. This stops <i>man-in-the-middle</i> attacks.</p>
+					<p>You should always try to make your cookies inaccessible on the client-side using JavaScript.</p>
+					<p>Use it like this: <br><i class="cookiecolor">document.cookie = “name=Batman; secure”</i></p>
+					<p>Insecure sites (with http: in the URL) can't set cookies with the Secure attribute. </p>
+					<p>But, don't assume that Secure prevents all access to sensitive information in cookies. For example, someone with access to the client's hard disk (or JavaScript if the HttpOnly attribute isn't set) can read and modify the information.</p>
+
+					<input type="text" class="cookievalue hidden"></input>
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<script src="./scripts/app.js"></script>
+<script>
+</script>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cookies httpOnly</title>
+	<link rel="stylesheet" href="./style/app.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Attributes - samesite</h1>
+					<p>The samesite attribute lets you control whether a cookie is sent if the user comes from outside that website.</p>
+					<p>It's designed to protect you from XSRF. samesite in theory should work so that the “xsrf protection tokens” isn't needed. </p>
+					<p>There are three settings: <i>strict</i>, <i>lax</i> and <i>None</i>:</p>
+					<p>&#x2022 <i>strict</i> - A cookie with <i>samesite=strict</i> is never sent if the user comes from outside the same site. In other words, whether a user follows a link from their mail or submits a form from evil.com, or does any operation that originates from another domain, the cookie is not sent. If you type in "example.com" into your browser, this cookie won't be sent if it's set to "strict" but if you click on a link within that site, it will be.</p>
+
+					<p>A form submission from evil.com won't send the cookie</p>
+					<p>Third-party cookies with SameSite=Strict will be rejected altogether by the browser.</p>
+
+					<p>&#x2022 <i>Lax</i> - forbids the browser to send cookies when coming from outside the site, but adds an exception. It allows them for safe requests eg GET but not POST.</p>
+					<p>They must be top-level requests. Typing it iin to the address bar of the browser, not through fetch.</p>
+
+					<p>&#x2022 <i>None</i> - Allows tracking.</p>
+
+					<p>samesite is ignored (not supported) by very old browsers. So don't solely rely it. But we surely can use samesite together with other protection measures, like xsrf tokens, to add an additional layer of defence and then, in the future, when old browsers die out, we’ll probably be able to drop xsrf tokens.</p>
+
+					<input type="text" class="cookievalue hidden"></input>
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<script src="./scripts/app.js"></script>
+<script>
+</script>
+
+</html>

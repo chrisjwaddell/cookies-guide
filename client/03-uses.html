@@ -26,32 +26,38 @@
 			<div class="wrapper">
 				<div class="content">
 					<h1>Uses and Advantages Cookies have</h1>
-					<p>On this page, we create a basic cookie with no attributes. By default, cookies are session cookies.</p>
-					<p>Cookies need a key/value pair eg <i class="cookiecolor">document.cookies = "name=Mark"</i>. You can create a cookie in the browser or in the server.</p>
-					<p>Create a basic cookie by clicking the <i>Create Cookie</i> button below.</p>
-					<p>When you close the page and reopen it, the cookies are deleted by the browser.</p>
-					<p class="note">Note: You may need to close the browser and reopen it for it to delete the cookie because browsers often have session recovery built in. Not just the page tab but the whole browser.</p>
 
-					<section class="cookie">
-						<div class="center">
-							<label for="cookie">Cookies on this page</label><br>
-							<textarea id="cookie" class="cookievalue cookiecolor"></textarea>
-						</div>
-					</section>
+					<p>HTTP is a stateless protocol. This is the reason cookies were added to browsers, to provide more personalized network connections. Cookies give the ability to remember and improve. They make interaction with the website better.</p>
+					<p>Cookies have two unique traits that make them very desirable:<br>&#x2022 They are passed automatically on each request to server.<br>&#x2022 Lifetime of cookies is more precise and natural for session management.</p>
+					<p>Some of the main uses of cookies are:<br>&#x2022 Session management and authentication<br>&#x2022 Personalizing<br>&#x2022 User tracking</p>
 
-					<p class="action">Click the "Create Cookie" button.</p>
-					<section class="add center">
-						<button id="btnCreateCookie" class="c-btn c-btn--primary btn--primary">Create Cookie</button>
-						<p>This button adds the cookies:<br><i class="cookiecolor">document.cookie = common_cookie=from_page-1; cookie_1=from_page_1</i></p>
-					</section>
+					<h2>Session management</h2>
+					<p>One of the main uses of cookies is to keep a user logged in even when the close all windows on the website so they don't have to keep logging in every time they visit the site. </p>
+					<p>Cookies are also very applicable for online shopping and remembering shopping cart selections. If the user searches the site for cowboy boots, then the next time the user comes to the site, the website will retrieve the user's record and fill the landing page with more cowboy boots. Ecommerce sites use a combination of session cookies and persistent cookies to create a seamless shopping cart experience. As the user adds items to her cart, session cookies keep track of the items. If the user abandons the cart, persistent cookies will retrieve her selections from the database the next time she visits. She will see her items already in the cart and ready to purchase. This is a huge help in encouraging conversions.</p>
+					<h2>Personalizing</h2>
+					<p>Cookies can be used for personalising a user’s browsing experience and storing user preferences. They can make the user experience more personal eg "Welcome back Mary".</p>
+					<h2>Tracking</h2>
+					<p>If you are using cookies to track users, you need to ask for permission to store cookies. If however, you are only using cookies to keep a user logged in or for storing personal preference data, you don't need to ask for permission to store cookies.</p>
+					<p>This is a contentious issue and many people are against anything stored about them. Some people don't allow cookies to be collected on their device.</p>
 
-					<p>Open the next page, cookie-02.html by clicking the link below.</p>
-					<div class="center">
-						<a class="link" href="./02-basic-cookie-2.html" target="_blank">Basic-Cookie-2.html</a>
-					</div>
+					<h3 style="margin-top: 80px;">Advantages of cookies</h3>
+					<p class="m-0">&#x2022 Cookies are sent to the browser without you having to do anything</p>
+					<p class="m-0">&#x2022 They can be secured with flags (same origin, HTTP-only, HTTPS etc)</p>
+					<p class="m-0">&#x2022 HTTP-Only cookies can't be compromised with XSS attacks</p>
+					<p class="m-0">&#x2022 They are well secured on the client side because of SSL</p>
+					<p class="m-0">&#x2022 They've lasted since 1994</p>
+					<p class="m-0">&#x2022 Javascript can't access cookies (if HttpOnly)</p>
 
-					<p>You can see that both pages can see <i>common_cookie</i>, it's value changes depending on which page you clicked <i>Create Cookie</i> on last.</p>
-					<p><i>cookie_1</i> with value - <i>from_page_1</i> and <i>cookie_2</i> with value - <i>from_page_2</i> can be seen on both pages.</p>
+
+					<h3 style="margin-top: 50px;">Disadvantages of cookies</h3>
+					<p class="m-0">&#x2022 Cookies are included with every HTTP request, thereby slowing down your web application by needlessly transmitting the same data over and over. Say a Web page contains four images, an external CSS document and a JavaScript document. Set a 4K cookie on that domain and the browser transfers that cookie to the server once for the HTML page, once for each image, once for the CSS document and once for the JavaScript document.</p>
+					<p class="m-0">&#x2022 Server must store each user session in memory</p>
+					<p class="m-0">&#x2022 Storage limit is smallest at 4kb</p>
+					<p class="m-0">&#x2022 The larger the cookie, the larger each request</p>
+					<p class="m-0">&#x2022 Cookies save all values in one long string and has to be parsed every time you need to retrieve a value, localStorage is easy key/value pair</p>
+
+
+					<p style="margin-top: 50px;">Cookies are used differently thesedays because now we have other storage options - Local Storage & Session Storage & IndexedDB. Their use as a place to store data is being replaced by localStorage and other things now.</p>
 
 					<section class="center next">
 						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
@@ -66,13 +72,6 @@
 </body>
 <script src="./scripts/app.js"></script>
 <script>
-	// elCreateCookie[0].addEventListener('click', (e) => {
-	// 	document.cookie = 'cookie_1=from_page_1'
-	// 	document.cookie = 'common_cookie=updated_page-1'
-	// 	showCookieValue()
-	// })
-
-
 	document.addEventListener("DOMContentLoaded", () => {
 		const cookies = document.cookie
 
