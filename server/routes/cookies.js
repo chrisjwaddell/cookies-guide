@@ -169,4 +169,11 @@ router.get('/httponly', (req, res) => {
 })
 
 
+router.get('/token', (req, res) => {
+	res.set('Set-Cookie', 'from_script=script; path=/;')
+	// res.sendFile(`${__dirname}/blank.js`)
+	res.send('')
+})
+
+
 module.exports = router;

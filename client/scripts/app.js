@@ -57,40 +57,8 @@ const TOC = [
 		filename: '13-code.html',
 	},
 	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
-	},
-	{
-		name: 'Attributes - domain',
-		filename: '08-cookie-domain.html',
+		name: 'Using <script> to create a cookie',
+		filename: '14-script-cookie.html',
 	},
 
 ]
@@ -133,8 +101,8 @@ function createSidebar(filename) {
 	let fileIndexSelected = 0
 	TOC.forEach((menuitem, i) => {
 		const elLi = createElementAtt(elUL, 'li', [], [], '')
-
 		const classes = ['link']
+
 		if (filename === menuitem.filename) {
 			classes.push('selected')
 			fileIndexSelected = i
@@ -145,7 +113,8 @@ function createSidebar(filename) {
 	})
 
 	const elNext = document.querySelector('.next a')
-	const nextSection = TOC.findIndex((menuItem) => menuItem.filename)
+	const nextSection = TOC.findIndex((menuItem) => menuItem.filename === filename)
+	console.log(nextSection)
 	if (fileIndexSelected < TOC.length - 1) elNext.setAttribute('href', TOC[fileIndexSelected + 1].filename)
 }
 

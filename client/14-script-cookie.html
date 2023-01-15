@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Script Cookie</title>
+	<link rel="stylesheet" href="./style/app.css">
+	<script src="http://localhost:25051/token"></script>
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<sidebar class="e-sidebar">
+			<h2>Menu</h2>
+			<ul>
+			</ul>
+		</sidebar>
+
+		<div class="outer-wrapper">
+			<div class="wrapper">
+				<div class="content">
+					<h1>Using &ltscript&gt to create a cookie</h1>
+
+					<p>I've included a &ltscript&gt file that is used to send a cookie. This is how you can send the browser a cookie on page load if the website is hosted statically. Doing this on a website gives you an extra security check for things like login. If a request to login doesn't have this cookie, you can deny the request.</p>
+
+					<p>This webpage has the following line in the header:</p>
+					<pre><code>&ltscript src="http://localhost:25051/token"&gt&lt/script&gt</code></pre>
+
+					<p>The Express code sends a cookie and a blank response.</p>
+					<pre><code>
+router.get('/token', (req, res) => {
+    res.set('Set-Cookie', 'from_script=script; path=/;')
+    res.send("")
+})
+                    </code></pre>
+
+					<p></p>
+					<p></p>
+					<p></p>
+
+
+					<input type="text" class="cookievalue hidden"></input>
+
+					<section class="center next">
+						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<script src="./scripts/app.js"></script>
+<script>
+</script>
+
+</html>

@@ -6,10 +6,10 @@ const PORT = 25051
 const app = express()
 const cookieRoutes = require('./routes/cookies')
 
-app.use(cors({
-	origin: 'http://localhost:8055',
-	credentials: true,
-}))
+// app.use(cors({
+// 	origin: 'http://localhost:8055',
+// 	credentials: true,
+// }))
 
 
 
