@@ -100,20 +100,6 @@ router.get('/httponly', (req, res) => {
 			showCookieValue()
 		}
 	});
-
-
-	let seconds = 0
-
-	function countSeconds(dur) {
-		seconds += 1
-		if (seconds < dur + 2) {
-			setTimeout(() => countSeconds(dur), 1000)
-		} else {
-			showCookieValue();
-			seconds = 0;
-			alert("Cookie expired now. See it disappear from the cookie list.")
-		}
-	}
 </script>
 
 </html>
