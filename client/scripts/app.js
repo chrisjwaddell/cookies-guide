@@ -101,7 +101,7 @@ function createSidebar(filename) {
 	let fileIndexSelected = 0
 	TOC.forEach((menuitem, i) => {
 		const elLi = createElementAtt(elUL, 'li', [], [], '')
-		const classes = ['link']
+		const classes = ['link', 'toc__item']
 
 		if (filename === menuitem.filename) {
 			classes.push('selected')

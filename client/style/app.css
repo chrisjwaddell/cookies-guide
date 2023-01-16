@@ -179,10 +179,6 @@ ul li {
 	line-height: 1.6;
 }
 
-.link.selected {
-	/* background-color: #555555; */
-	border: 1px solid #44cc88;
-}
 
 
 sidebar li {
@@ -266,6 +262,30 @@ sidebar ul {
 sidebar ul li:first-of-type {
 	margin-top: 35px;
 }
+
+sidebar ul li {
+	height: 30px;
+}
+
+.toc__item {
+	color: #000;
+	font-weight: 400;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 1.15rem;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	text-decoration: none !important;
+	cursor: pointer;
+	/* transition: color .35s ease-in; */
+}
+
+.toc__item.selected {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
 
 .add {
 	border: 1px solid #016cfe;
