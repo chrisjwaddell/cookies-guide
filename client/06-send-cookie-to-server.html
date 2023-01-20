@@ -49,7 +49,7 @@
 					<p class="action">Click the "Send Request" button to create a basic cookie and send it to an Express server</p>
 					<!-- <p class="action">Click the "Send Request" button.</p> -->
 					<section class="add center">
-						<p>This button makes a cookie: <br><i class="cookiecolor">no_path=default_path_is_client;</i><br>and sends a fetch request to the Express server, to: <br><i class="cookiecolor">http://localhost:8055/client/06-send-cookie-to-server.html</i></p>
+						<p>This button makes a cookie: <br><i class="cookiecolor">no_path=default_path_is_client;</i><br>and sends a fetch request to the Express server, to: <br><i class="cookiecolor">http://<span class="host"></span>:8055/client/06-send-cookie-to-server.html</i></p>
 						<button class="btnFetch c-btn c-btn--secondary btn--secondary">Send Request</button>
 					</section>
 
@@ -91,11 +91,11 @@ elFetch[0].addEventListener('click', (e) => {
 					<p class="action">Click the "Send Request" button to create a basic cookie and send it to an Express server</p>
 					<!-- <p class="action">Click the "Send Request" button.</p> -->
 					<section class="add center">
-						<p>This button makes a cookie: <br><i class="cookiecolor">path_is_root=sending_to_server;path=/;</i><br>and sends a fetch request to the Express server, to: <br><i class="cookiecolor">http://localhost:25051/sendcookie</i></p>
+						<p>This button makes a cookie: <br><i class="cookiecolor">path_is_root=sending_to_server;path=/;</i><br>and sends a fetch request to the Express server, to: <br><i class="cookiecolor">http://<span class="host"></span>:25051/sendcookie</i></p>
 						<button class="btnFetch c-btn c-btn--secondary btn--secondary">Send Request</button>
 					</section>
 
-					<p>Notice how when we added this cookie we added <i>path=/;</i> The reason path was included is because the previous cookies had no path attribute put in so they will take the path of the current webpage, that being <i>client</i>. When we make a fetch request, we are making it to <i>localhost:25051/sendcookie</i>.</p>
+					<p>Notice how when we added this cookie we added <i>path=/;</i> The reason path was included is because the previous cookies had no path attribute put in so they will take the path of the current webpage, that being <i>client</i>. When we make a fetch request, we are making it to <i><span class="host"></span>:25051/sendcookie</i>.</p>
 
 
 					<pre> <code>
@@ -137,7 +137,7 @@ router.get('/sendcookie', (req, res) => {
 </code></pre>
 
 
-					<p>If you look at the cookie list, you will see that only the latest cookie added: <i class="cookiecolor">path_is_root=sending_to_server;path=/;</i> has a <i>path</i> that is <i>/</i>. The fetch request is to <i>http://localhost:25051/sendcookie</i>. So this is not in the <i>/client<i> directory so those cookies with a path of <i>/client</i> don't get sent in this request.</p>
+					<p>If you look at the cookie list, you will see that only the latest cookie added: <i class="cookiecolor">path_is_root=sending_to_server;path=/;</i> has a <i>path</i> that is <i>/</i>. The fetch request is to <i>http://<span class="host"></span>:25051/sendcookie</i>. So this is not in the <i>/client<i> directory so those cookies with a path of <i>/client</i> don't get sent in this request.</p>
 
 
 
@@ -153,12 +153,16 @@ router.get('/sendcookie', (req, res) => {
 </body>
 <script src="./scripts/app.js"></script>
 <script>
+	const hostname = location.hostname
+	const elHost = document.querySelectorAll(".host")
+	elHost.forEach( el => el.textContent = hostname)
+
 	const elFetch = document.querySelectorAll('.btnFetch');
 	elFetch[0].addEventListener('click', (e) => {
 		document.cookie = 'no_path=default_path_is_client;'
 		showCookieValue()
 
-		let req = new Request("http://localhost:8055/client/06-send-cookie-to-server.html", {
+		let req = new Request("http://" + hostname + ":8055/client/06-send-cookie-to-server.html", {
 			credentials: 'include',
 		});
 		const response = fetch(req).then(resp => resp.text())
@@ -174,7 +178,7 @@ router.get('/sendcookie', (req, res) => {
 		document.cookie = 'path_is_root=sending_to_server;path=/;'
 		showCookieValue()
 
-		let req = new Request("http://localhost:25051/sendcookie", {
+		let req = new Request("http://" + hostname + ":25051/sendcookie", {
 			credentials: 'include',
 		});
 		const response = fetch(req).then(resp => resp.json())

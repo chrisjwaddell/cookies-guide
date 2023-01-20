@@ -200,8 +200,8 @@ sidebar li {
 	max-width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	padding-left: 25px;
-	padding-right: 25px;
+	padding-left: 80px;
+	padding-right: 60px;
 }
 
 .content {
@@ -245,8 +245,8 @@ section {
 
 
 sidebar {
-	background-color: #ffffff;
-	width: 300px;
+	background-color: #dddddd;
+	width: 275px;
 	padding: 10px;
 	/* z-index: -100; */
 }
@@ -256,7 +256,7 @@ sidebar h2 {
 }
 
 sidebar ul {
-	padding-left: 20px;
+	padding-left: 10px;
 }
 
 sidebar ul li:first-of-type {
@@ -272,7 +272,7 @@ sidebar ul li {
 	font-weight: 400;
 	margin-top: 0;
 	margin-bottom: 0;
-	font-size: 1.15rem;
+	font-size: 1rem;
 	margin: 0;
 	padding: 0;
 	border: 0;
