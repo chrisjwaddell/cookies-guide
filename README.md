@@ -2,7 +2,14 @@
 
 This is an interactive <i>Cookies Guide</i> that helps you understand how cookies work. There is an Express server file that you can run and as you go through this <i>Cookies Guide</i> you can click a button on these pages that run fetch commands and see cookies being added to the browser and look at the console <i>Network</i> tab.
 
-Please run the Express server file by typing in <i>npm run server</i> in a console.
-If you use a web server within VS Code, it's already configured to port 25051, if instead, you use a different web server, please use port 25051.
+### To get started
+1. Clone this repo.
+2. Run the Express server file by typing in <i>npm run server</i> in a console.
+3. If you use a web server within VS Code, it's already configured to port 25051, if instead, you use a different web server, please use port 25051.
+
+<br><br>
+
+
+A screenshot sample:
 
 ![](client/img/cookies.jpg)
