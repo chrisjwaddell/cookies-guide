@@ -31,7 +31,9 @@
 
 					<p><i class="cookiecolor">document.cookie = "all_domain=google.com;domain=google.com;"</i><br>This cookie appears on all this website sub-domains.</p>
 
-					<p>The following cookie is the same thing, it appears on all sub-domains <i>.domain.com</i>:<br><i class="cookiecolor">"all-domain=all; domain=.domain.com;"</i></p>
+					<p>The following cookie is the same thing, it appears on all sub-domains <i>.domain.com</i>:<br><i class="cookiecolor">"all-domain=all; domain=.domain.com;"</i><br>It will appear for <i>domain.com</i> as well as <i>www.domain.com</i> and <i>api.domain.com</i>.</i></p>
+					<p class="note">Note: It's still common to use the <i>dot .</i> in front of the domain to be compatible with old browsers but this is the same as just having the domain so <i>;domain=.domain.com</i> is the same as <i>;domain=domain.com</i>.</p>
+
 					<p>The following cookie will show for only www.domain.com:<br><i class="cookiecolor">"just-wwww=www; domain=www.domain.com;"</i></p>
 					<p>The following cookie will show for domain.com:<br><i class="cookiecolor">"just-domain=domain; domain=domain.com;"</i></p>
 

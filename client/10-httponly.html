@@ -60,7 +60,8 @@ router.get('/httponly', (req, res) => {
 })
                     </code></pre>
 
-
+					<p>It didn't appear on this page because we didn't put in <i>; path=/client</i>. But it appears in the console Storage/Application tab.</p>
+					
 					<section class="center next">
 						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
 					</section>
@@ -74,12 +75,16 @@ router.get('/httponly', (req, res) => {
 </body>
 <script src="./scripts/app.js"></script>
 <script>
+	const hostname = location.hostname
+	const elHost = document.querySelectorAll(".host")
+	elHost.forEach( el => el.textContent = hostname)
+
 	const elFetch = document.querySelectorAll('.btnFetch');
 
 	elFetch[0].addEventListener('click', (e) => {
 		console.log("elFetch[0]")
 
-		let req = new Request("http://localhost:25051/httponly", {
+		let req = new Request("http://" + hostname + ":25051/httponly", {
 			credentials: 'include',
 		});
 		const response = fetch(req).then(resp => resp.json())
