@@ -137,7 +137,7 @@
 <script>
 	const hostname = location.hostname
 	const elHost = document.querySelectorAll(".host")
-	elHost.forEach( el => el.textContent = hostname)
+	elHost.forEach(el => el.textContent = hostname)
 
 	const elFetch = document.querySelectorAll('.btnFetch');
 	const elCookievaluesp = document.querySelector(".cookievaluesp")
@@ -190,7 +190,7 @@
 	elFetch[2].addEventListener('click', (e) => {
 		// console.log("elFetch[2]")
 
-		let req = new Request("http://"+ hostname + ":25051/receivecookies1", {
+		let req = new Request("http://" + hostname + ":25051/receivecookies1", {
 			credentials: 'include',
 		});
 		let response = fetch(req).then(resp => resp.json())
