@@ -1,6 +1,7 @@
 # Cookies Guide
 
-This is an interactive <i>Cookies Guide</i> that helps you understand how cookies work. There is an Express server file that you can run and as you go through this <i>Cookies Guide</i> you can click a button on these pages that run fetch commands and see cookies being added to the browser and look at the console <i>Network</i> tab.
+This is an interactive <i>Cookies Guide</i> that helps you understand how cookies work. As you go through this <i>Cookies Guide</i>, there are buttons you can click that tell you the cookie it creates and you can see the cookie being added in the brower by looking at the console <i>Network</i> tab. There is an Express server file that runs in the background to help with this interactive guide.
+
 
 ### To get started
 1. Clone this repo.
