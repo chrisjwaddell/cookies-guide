@@ -2,31 +2,31 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cookies httpOnly</title>
-	<link rel="stylesheet" href="./style/app.css">
-	<style>
-	</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies httpOnly</title>
+    <link rel="stylesheet" href="./style/app.css">
+    <style>
+    </style>
 </head>
 
 <body>
-	<div class="container">
+    <div class="container">
 
-		<sidebar class="e-sidebar">
-			<h2>Menu</h2>
-			<ul class="toc">
-			</ul>
-		</sidebar>
+        <sidebar class="e-sidebar">
+            <h2>Menu</h2>
+            <ul class="toc">
+            </ul>
+        </sidebar>
 
-		<div class="outer-wrapper">
-			<div class="wrapper">
-				<div class="content">
-					<h1>Some code for reading, writing and deleting cookies</h1>
-					<h2>Reading a cookie</h2>
-					<pre><code>
+        <div class="outer-wrapper">
+            <div class="wrapper">
+                <div class="content">
+                    <h1>Some code for reading, writing and deleting cookies</h1>
+                    <h2>Reading a cookie</h2>
+                    <pre><code>
 // returns the cookie with the given name,
 // or undefined if not found
 function getCookie(name) {
@@ -37,11 +37,11 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
                     </code></pre>
-					<p>Source: javascript.info</p>
+                    <p>Source: javascript.info</p>
 
 
-					<h2>Find a key and value of a given cookie</h2>
-					<pre><code>
+                    <h2>Find a key and value of a given cookie</h2>
+                    <pre><code>
 // Given one cookie, it finds the key and value
 function cookieKeyValue(c) {
     let cookie = decodeURIComponent(c).trim()
@@ -55,8 +55,8 @@ function cookieKeyValue(c) {
                     </code></pre>
 
 
-					<h2>Writing a cookie</h2>
-					<pre><code>
+                    <h2>Writing a cookie</h2>
+                    <pre><code>
 function storeCookie(key, value, duration) {
     var expDate = new Date();
 
@@ -65,7 +65,7 @@ function storeCookie(key, value, duration) {
 }
                     </code></pre>
 
-					<pre><code>
+                    <pre><code>
 function setCookie(name, value, options = {}) {
 
     options = {
@@ -95,29 +95,30 @@ function setCookie(name, value, options = {}) {
 // Example of use:
 setCookie('user', 'John', {secure: true, 'max-age': 3600});
                     </code></pre>
-					<p>Source: javascript.info</p>
+                    <p>Source: javascript.info</p>
 
-					<h2>Remvoe cookie</h2>
-					<pre><code>
+                    <h2>Remove cookie</h2>
+                    <pre><code>
 function deleteCookie(name) {
     setCookie(name, "", {
         'max-age': -1
     })
 }
                         </code></pre>
-					<p>When we update or delete a cookie, we should use exactly the same path and domain options as when we set it.</p>
+                    <p>When we update or delete a cookie, we should use exactly the same path and domain options as when
+                        we set it.</p>
 
 
-					<input type="text" class="cookievalue hidden"></input>
+                    <input type="text" class="cookievalue hidden"></input>
 
-					<section class="center next">
-						<a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
-					</section>
+                    <section class="center next">
+                        <a href="" class="c-btn c-btn--primary btn--primary">Go on to the Next Page</a>
+                    </section>
 
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>
